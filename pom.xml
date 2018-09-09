@@ -13,8 +13,8 @@
 
 	<url>https://github.com/exabrial/logback-openwire-appender</url>
 	<scm>
-		<connection>scm:git:ssh://git@github.com/exabrial/exabrial/logback-logback-appender.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/exabrial/logback-logback-appender.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com/exabrial/logback-openwire-appender.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/exabrial/logback-openwire-appender.git</developerConnection>
 		<url>https://github.com/exabrial/logback-logback-appender/tree/master</url>
 		<tag>HEAD</tag>
 	</scm>
