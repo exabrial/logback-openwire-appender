@@ -125,7 +125,7 @@
 							<minimizeJar>true</minimizeJar>
 							<filters>
 								<filter>
-									<artifact>ch.qos.logback:*</artifact>
+									<artifact>ch.*:*</artifact>
 									<excludes>
 										<exclude>**</exclude>
 									</excludes>
@@ -137,16 +137,12 @@
 							</filters>
 							<relocations>
 								<relocation>
-									<pattern>org.apache.activemq</pattern>
-									<shadedPattern>com.github.exabrial.logback.shaded.org.apache.activemq</shadedPattern>
+									<pattern>org</pattern>
+									<shadedPattern>com.github.exabrial.logback.shaded.org</shadedPattern>
 								</relocation>
 								<relocation>
 									<pattern>javax</pattern>
 									<shadedPattern>com.github.exabrial.logback.shaded.javax</shadedPattern>
-								</relocation>
-								<relocation>
-									<pattern>org.fusesource.hawtbuf</pattern>
-									<shadedPattern>com.github.exabrial.logback.shaded.org.fusesource.hawtbuf</shadedPattern>
 								</relocation>
 							</relocations>
 						</configuration>
