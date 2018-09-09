@@ -50,7 +50,7 @@ Here's a working `logback.xml` that includes the previously mentioned GELF encod
 	<appender
 		name="gelf-jms"
 		class="com.github.exabrial.logback.ActiveMQAppender">
-		<brokerUrl>failover:(ssl://activemq-1.example.com:61616,ssl://activemq-2.example.com:61616)?randomize=false&mp;backup=true</brokerUrl>
+		<brokerUrl>failover:(ssl://activemq-1.example.com:61616,ssl://activemq-2.example.com:61616)?randomize=false&amp;backup=true</brokerUrl>
 		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 			<layout class="me.moocar.logbackgelf.GelfLayout">
 				<useLoggerName>true</useLoggerName>
