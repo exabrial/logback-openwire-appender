@@ -44,6 +44,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
 			<version>1.2.3</version>
@@ -119,22 +125,14 @@
 							<minimizeJar>true</minimizeJar>
 							<filters>
 								<filter>
-									<artifact>org.apache.activemq:*</artifact>
+									<artifact>ch.qos.logback:*</artifact>
 									<excludes>
-										<exclude>META-INF/**</exclude>
+										<exclude>**</exclude>
 									</excludes>
 								</filter>
 								<filter>
-									<artifact>oorg.apache.geronimo.specs:*</artifact>
-									<excludes>
-										<exclude>META-INF/**</exclude>
-									</excludes>
-								</filter>
-								<filter>
-									<artifact>org.fusesource.hawtbuf:*</artifact>
-									<excludes>
-										<exclude>META-INF/**</exclude>
-									</excludes>
+									<artifact>org.*:*</artifact>
+									<excludes>META-INF/**</excludes>
 								</filter>
 							</filters>
 							<relocations>
