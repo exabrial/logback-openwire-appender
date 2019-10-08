@@ -17,6 +17,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class ActiveMQTextMessageOutputStream extends OutputStream {
 	private final String brokerUrl;
+	private String username;
+	private String password;
 	private final String queueName;
 	private String state = "uninitialized";
 	private Writer writer;
@@ -25,11 +27,18 @@ public class ActiveMQTextMessageOutputStream extends OutputStream {
 	private MessageProducer producer;
 	private Session session;
 
-	public ActiveMQTextMessageOutputStream(String brokerUrl, String queueName) {
+	public ActiveMQTextMessageOutputStream(String brokerUrl, String username, String password, String queueName) {
 		this.brokerUrl = brokerUrl;
+		this.username = username;
+		this.password = password;
 		this.queueName = queueName;
 		try {
-			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerUrl);
+			ActiveMQConnectionFactory connectionFactory;
+			if (username != null && !"".equals(username)) {
+				connectionFactory = new ActiveMQConnectionFactory(username, password, brokerUrl);
+			} else {
+				connectionFactory = new ActiveMQConnectionFactory(brokerUrl);
+			}
 			connection = connectionFactory.createConnection();
 			connection.start();
 			connection.setExceptionListener(new ExceptionListener() {
