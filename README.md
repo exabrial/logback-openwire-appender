@@ -15,7 +15,7 @@ Maven coordinates:
 <dependency>
 	<groupId>com.github.exabrial</groupId>
 	<artifactId>logback-openwire-appender</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.2</version>
 	<scope>runtime</scope>
 </dependency>
 ```
