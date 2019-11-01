@@ -15,7 +15,7 @@ Maven coordinates:
 <dependency>
 	<groupId>com.github.exabrial</groupId>
 	<artifactId>logback-openwire-appender</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.3</version>
 	<scope>runtime</scope>
 </dependency>
 ```
@@ -24,11 +24,12 @@ You may use any standard Logback encoder, but if you are sending your messages t
 
 ```
 <dependency>
-  <groupId>me.moocar</groupId>
-  <artifactId>logback-gelf</artifactId>
-  <version>0.3</version>
-  <scope>runtime</scope>
+	<groupId>de.siegmar</groupId>
+	<artifactId>logback-gelf</artifactId>
+	<version>2.1.0</version>
+	<scope>runtime</scope>
 </dependency>
+
 ```
 
 
@@ -48,24 +49,23 @@ Here's a working `logback.xml` that includes the previously mentioned GELF encod
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<contextName>app-artifact-id</contextName>
+	<contextName>${project.artifactId}</contextName>
 	<jmxConfigurator />
 	<appender
 		name="gelf-jms"
-		class="com.github.exabrial.logback.ActiveMQAppender">
-		<brokerUrl>failover:(ssl://activemq-1.example.com:61616,ssl://activemq-2.example.com:61616)?randomize=false&amp;backup=true</brokerUrl>
-        <username>loguser</username>
-        <password>${PASSWORD_FROM_ENVIRONMENT_VARIABLE}</password>
-		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-			<layout class="me.moocar.logbackgelf.GelfLayout">
-				<useLoggerName>true</useLoggerName>
-				<useThreadName>true</useThreadName>
-				<includeFullMDC>true</includeFullMDC>
-				<staticField class="me.moocar.logbackgelf.Field">
-					<key>_app</key>
-					<value>app-artifact-id</value>
-				</staticField>
-			</layout>
+		class="com.github.exabrial.logback.JmsAppender">
+		<queueName>ch.qos.logback</queueName>
+		<encoder class="de.siegmar.logbackgelf.GelfEncoder">
+			<includeCallerData>true</includeCallerData>
+			<includeRootCauseData>true</includeRootCauseData>
+			<includeLevelName>true</includeLevelName>
+			<shortPatternLayout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>%.100ex{short}%.100m</pattern>
+			</shortPatternLayout>
+			<fullPatternLayout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>%msg</pattern>
+			</fullPatternLayout>
+			<staticField>app:my-app-name</staticField>
 		</encoder>
 	</appender>
 	<root level="info">
@@ -75,4 +75,5 @@ Here's a working `logback.xml` that includes the previously mentioned GELF encod
 		name="com.example"
 		level="debug" />
 </configuration>
+
 ```
