@@ -34,11 +34,12 @@ You may use any standard Logback encoder, but if you are sending your messages t
 
 ## Configuration
 
-| Property Name      | Example                                                                                                      | Purpose                                                                             |
-|--------------------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| brokerUrl          | failover:(ssl://activemq-1.example.com:61616,ssl://activemq-2.example.com:61616)?randomize=false&backup=true | The ActiveMQ client URL. Any valid ActiveMQ client URL can be used.                 |
-| queueName          | ch.qos.logback                                                                                               | The Queue name to write logs to                                                 |
-
+| Property Name      | Optional? | Example                                                                                                      | Purpose                                                                             |
+|--------------------|-----------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| brokerUrl          | No        | failover:(ssl://activemq-1.example.com:61616,ssl://activemq-2.example.com:61616)?randomize=false&backup=true | The ActiveMQ client URL. Any valid ActiveMQ client URL can be used.                 |
+| username           | Yes       | loguser                                                                                                      | The username to use to establish the connection to ActiveMQ                         |
+| password           | Yes       | ${PASSWORD_FROM_ENVIRONMENT_VARIABLE}                                                                        | The password to use to establish the connection to ActiveMQ                         |
+| queueName          | No        | ch.qos.logback                                                                                               | The Queue name to write logs to                                                     |
 
 ### Example logback.xml
 
@@ -53,6 +54,8 @@ Here's a working `logback.xml` that includes the previously mentioned GELF encod
 		name="gelf-jms"
 		class="com.github.exabrial.logback.ActiveMQAppender">
 		<brokerUrl>failover:(ssl://activemq-1.example.com:61616,ssl://activemq-2.example.com:61616)?randomize=false&amp;backup=true</brokerUrl>
+        <username>loguser</username>
+        <password>${PASSWORD_FROM_ENVIRONMENT_VARIABLE}</password>
 		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 			<layout class="me.moocar.logbackgelf.GelfLayout">
 				<useLoggerName>true</useLoggerName>
