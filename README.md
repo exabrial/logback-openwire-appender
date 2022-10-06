@@ -7,6 +7,8 @@ While OpenWire is the native protocol for ActiveMQ, any valid ActiveMQ client UR
 
 If you use GrayLog, you can read messages off of ActiveMQ using this input: https://github.com/exabrial/graylog-plugin-openwire
 
+As of 1.1.0, JDK 11 is required.
+
 ## Usage
 
 Maven coordinates:
