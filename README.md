@@ -15,21 +15,20 @@ Maven coordinates:
 <dependency>
 	<groupId>com.github.exabrial</groupId>
 	<artifactId>logback-openwire-appender</artifactId>
-	<version>1.0.2</version>
+	<version>1.1.0</version>
 	<scope>runtime</scope>
 </dependency>
 ```
 
-You may use any standard Logback encoder, but if you are sending your messages to Graylog, I recommend using the GELF format for messages. A GELF encoder can be found in this project: https://github.com/Moocar/logback-gelf
+You may use any standard Logback encoder, but if you are sending your messages to Graylog, I recommend using the GELF format for messages. A GELF encoder can be found in this project: https://github.com/osiegmar/logback-gelf
 
 ```
 <dependency>
 	<groupId>de.siegmar</groupId>
 	<artifactId>logback-gelf</artifactId>
-	<version>2.1.0</version>
+	<version>3.0.0</version>
 	<scope>runtime</scope>
 </dependency>
-
 ```
 
 
@@ -53,7 +52,7 @@ Here's a working `logback.xml` that includes the previously mentioned GELF encod
 	<jmxConfigurator />
 	<appender
 		name="gelf-jms"
-		class="com.github.exabrial.logback.JmsAppender">
+		class="com.github.exabrial.logback.ActiveMQAppender">
 		<queueName>ch.qos.logback</queueName>
 		<encoder class="de.siegmar.logbackgelf.GelfEncoder">
 			<includeCallerData>true</includeCallerData>
