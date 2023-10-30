@@ -49,13 +49,13 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
-			<version>1.2.11</version>
+			<version>1.4.11</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.activemq</groupId>
 			<artifactId>activemq-client</artifactId>
-			<version>5.17.1</version>
+			<version>5.17.3</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
